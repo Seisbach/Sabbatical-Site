@@ -21,25 +21,23 @@ Daten aus zwei JSON-Dateien liest.
   GitHub-Contribution-Graph) und ein Tagebuch-Feed mit Trend-Indikator
   (▲/▼ im Vergleich zum gleitenden Durchschnitt der letzten Tage).
 - `books.html` — Liste gelesener Bücher mit Kurzreview.
-- `new-entry.html` — Formular, das aus deiner Eingabe einen fertigen
-  JSON-Eintrag baut, den du in `data/entries.json` einfügst.
 - `data/entries.json` — die eigentlichen Schreib-Daten.
 - `data/books.json` — die Bücherliste.
-- `assets/` — Styles (`style.css`) und Logik (`tracker.js`, `books.js`,
-  `new-entry.js`), alles ohne externe Abhängigkeiten.
+- `assets/` — Styles (`style.css`) und Logik (`tracker.js`, `books.js`),
+  alles ohne externe Abhängigkeiten.
 
 ## Täglich einen Schreib-Eintrag hinzufügen
 
-1. Auf der Seite `+ Neuer Eintrag` (`new-entry.html`) Datum, Start-/
-   End-Wortanzahl, Minuten und einen kurzen Kommentar eintragen.
-2. Den generierten JSON-Block kopieren.
-3. Über den Link auf der Seite `data/entries.json` direkt im
-   GitHub-Web-Editor öffnen.
-4. Den Block direkt nach der öffnenden `[` einfügen (neuester Eintrag
-   zuerst) und committen.
-5. Die Seite zeigt den neuen Eintrag automatisch beim nächsten Laden an.
+Es gibt kein Formular auf der Seite — Einträge werden per Chat mit Claude
+hinzugefügt: einfach abends eine Nachricht schreiben, z. B.
 
-Alternativ kannst du `data/entries.json` auch lokal editieren und pushen.
+> "Heute: 5000 zu 5400 Wörter, 30 Minuten, Fokus war Kapitelstruktur."
+
+Claude ergänzt daraus einen Eintrag in `data/entries.json`, committet und
+pusht ihn direkt. Eine tägliche Erinnerung dazu ist eingerichtet.
+
+Alternativ kannst du `data/entries.json` auch selbst lokal editieren und
+pushen.
 
 ### Format eines Eintrags
 
@@ -80,5 +78,3 @@ unterbricht sie.
 - **Titel/Buchname:** in jeder HTML-Datei `<title>` und `.brand` anpassen.
 - **Farben:** CSS-Variablen in `assets/style.css` (`:root` und die
   `prefers-color-scheme: dark`-Variante).
-- **GitHub-Link im Formular:** `GITHUB_REPO` / `GITHUB_BRANCH` oben in
-  `assets/new-entry.js`, falls Repo-Name oder Standard-Branch abweichen.
