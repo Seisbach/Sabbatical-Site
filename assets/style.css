@@ -1,0 +1,417 @@
+/* ---------- Design tokens ---------- */
+:root {
+  --bg: #faf9f6;
+  --bg-elevated: #ffffff;
+  --text: #1f1d1a;
+  --text-muted: #6b6459;
+  --border: #e7e3db;
+  --accent: #2f6f5e;
+  --accent-soft: #e4efeb;
+  --up: #2f6f5e;
+  --down: #b5533c;
+  --scale-0: #edeae2;
+  --scale-1: #bcdbcf;
+  --scale-2: #7fbba6;
+  --scale-3: #48937c;
+  --scale-4: #1f6552;
+  --scale-neg: #d9a05b;
+  --shadow: 0 1px 2px rgba(31, 29, 26, 0.04), 0 4px 16px rgba(31, 29, 26, 0.04);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #16151a;
+    --bg-elevated: #1e1d23;
+    --text: #eeece6;
+    --text-muted: #9a958a;
+    --border: #302e33;
+    --accent: #5fb79b;
+    --accent-soft: #22322c;
+    --up: #5fb79b;
+    --down: #d97a5f;
+    --scale-0: #232128;
+    --scale-1: #1f3a32;
+    --scale-2: #26533f;
+    --scale-3: #2c7757;
+    --scale-4: #3fa478;
+    --scale-neg: #7a5432;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.2), 0 4px 16px rgba(0, 0, 0, 0.24);
+  }
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px 80px;
+}
+
+/* ---------- Header / nav ---------- */
+header.site {
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+
+.site-inner {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 28px 24px 20px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 1.35rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: var(--text);
+}
+
+nav.site-nav {
+  display: flex;
+  gap: 4px;
+}
+
+nav.site-nav a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+nav.site-nav a:hover {
+  color: var(--text);
+  background: var(--accent-soft);
+}
+
+nav.site-nav a.active {
+  color: var(--accent);
+  background: var(--accent-soft);
+  font-weight: 600;
+}
+
+/* ---------- Page heading ---------- */
+h1.page-title {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 1.8rem;
+  margin: 0 0 6px;
+}
+
+p.page-sub {
+  color: var(--text-muted);
+  margin: 0 0 32px;
+  font-size: 0.98rem;
+}
+
+/* ---------- Stat cards ---------- */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.stat-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 16px;
+  box-shadow: var(--shadow);
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.stat-label {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-top: 2px;
+}
+
+/* ---------- Heatmap ---------- */
+.heatmap-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 40px;
+}
+
+.heatmap-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+}
+
+.heatmap-scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-rows: repeat(7, 12px);
+  gap: 3px;
+  width: max-content;
+}
+
+.heatmap-cell {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+  background: var(--scale-0);
+  cursor: default;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.heatmap-legend .heatmap-cell {
+  width: 10px;
+  height: 10px;
+}
+
+/* ---------- Feed ---------- */
+.feed-title {
+  font-size: 1.05rem;
+  margin: 0 0 16px;
+}
+
+.entry {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.entry:last-child {
+  border-bottom: none;
+}
+
+.entry-date {
+  flex: 0 0 92px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding-top: 2px;
+}
+
+.entry-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.entry-metrics {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.entry-words {
+  font-weight: 700;
+  font-size: 1.05rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.entry-words.up { color: var(--up); }
+.entry-words.down { color: var(--down); }
+
+.entry-trend {
+  font-size: 0.78rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--text-muted);
+}
+
+.entry-trend.up { color: var(--up); }
+.entry-trend.down { color: var(--down); }
+
+.entry-minutes {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.entry-note {
+  color: var(--text);
+  font-size: 0.94rem;
+  margin-top: 4px;
+}
+
+.empty-state {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  padding: 24px 0;
+}
+
+/* ---------- Books ---------- */
+.book-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.book-title {
+  font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+  font-size: 1.1rem;
+  margin: 0 0 2px;
+}
+
+.book-meta {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+}
+
+.book-review {
+  font-size: 0.96rem;
+}
+
+/* ---------- Forms ---------- */
+.form-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.field {
+  margin-bottom: 16px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+input, textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 0.95rem;
+}
+
+input:focus, textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+
+button {
+  font-family: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.output-block {
+  margin-top: 8px;
+}
+
+pre.output {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.helper-text {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.steps {
+  padding-left: 20px;
+}
+
+.steps li {
+  margin-bottom: 10px;
+}
+
+a.gh-link {
+  color: var(--accent);
+}
+
+.toast {
+  display: inline-block;
+  font-size: 0.82rem;
+  color: var(--accent);
+  margin-left: 10px;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+}

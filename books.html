@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabbatical-Sachbuch — Bücher</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site">
+    <div class="site-inner">
+      <a class="brand" href="index.html">Sabbatical-Sachbuch</a>
+      <nav class="site-nav">
+        <a href="index.html">Schreibfortschritt</a>
+        <a href="books.html" class="active">Bücher</a>
+        <a href="new-entry.html">+ Neuer Eintrag</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">Gelesene Bücher</h1>
+    <p class="page-sub">Kurz notiert — maximal drei Sätze pro Buch.</p>
+
+    <div id="book-list"></div>
+
+    <p class="helper-text">
+      Neues Buch hinzufügen: Öffne
+      <code>data/books.json</code> und ergänze ein Objekt mit
+      <code>title</code>, <code>author</code>, <code>dateFinished</code> (JJJJ-MM-TT) und
+      <code>review</code> (max. drei Sätze) — dann committen &amp; pushen.
+    </p>
+  </main>
+
+  <script src="assets/books.js"></script>
+</body>
+</html>

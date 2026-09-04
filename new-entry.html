@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabbatical-Sachbuch — Neuer Eintrag</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site">
+    <div class="site-inner">
+      <a class="brand" href="index.html">Sabbatical-Sachbuch</a>
+      <nav class="site-nav">
+        <a href="index.html">Schreibfortschritt</a>
+        <a href="books.html">Bücher</a>
+        <a href="new-entry.html" class="active">+ Neuer Eintrag</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">Neuer Eintrag</h1>
+    <p class="page-sub">Trage deinen Abend ein — das Formular baut dir daraus den fertigen JSON-Eintrag.</p>
+
+    <form id="entry-form" class="form-card">
+      <div class="field">
+        <label for="date">Datum</label>
+        <input type="date" id="date" required />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="startWords">Wörter am Anfang</label>
+          <input type="number" id="startWords" placeholder="z. B. 5000" required />
+        </div>
+        <div class="field">
+          <label for="endWords">Wörter am Ende</label>
+          <input type="number" id="endWords" placeholder="z. B. 5400" required />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="minutes">Schreibzeit (Minuten)</label>
+        <input type="number" id="minutes" placeholder="z. B. 30" required />
+      </div>
+
+      <div class="field">
+        <label for="note">Kommentar / Fokus des Tages</label>
+        <textarea id="note" placeholder="z. B. Fokus vor allem Kapitelstruktur bearbeiten."></textarea>
+      </div>
+
+      <button type="submit">Eintrag generieren</button>
+      <span id="summary" class="helper-text"></span>
+    </form>
+
+    <div id="output-block" class="form-card output-block" style="display: none">
+      <label>Fertiger JSON-Eintrag</label>
+      <pre id="output" class="output"></pre>
+      <button id="copy-btn" class="secondary" type="button">In Zwischenablage kopieren</button>
+      <span id="copy-toast" class="toast">Kopiert!</span>
+
+      <ol class="steps" style="margin-top: 20px">
+        <li>Text oben kopieren.</li>
+        <li>
+          <a id="edit-link" class="gh-link" href="#" target="_blank" rel="noopener">data/entries.json auf GitHub öffnen</a>
+          (Bearbeitungsmodus).
+        </li>
+        <li>Den kopierten Block direkt <strong>nach der öffnenden eckigen Klammer <code>[</code></strong> einfügen (neuester Eintrag zuerst).</li>
+        <li>Unten auf der GitHub-Seite committen — die Website aktualisiert sich automatisch.</li>
+      </ol>
+    </div>
+  </main>
+
+  <script src="assets/new-entry.js"></script>
+</body>
+</html>
