@@ -115,8 +115,14 @@ function colorForDiff(diff, maxAbsPositive) {
   return "var(--scale-1)";
 }
 
+const WEEKDAY_SHORT = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"];
+const WEEKDAY_LABEL_ROWS = new Set([0, 2, 4]); // Mo, Mi, Fr — wie im GitHub-Contribution-Graph
+const MONTH_SHORT = ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"];
+
 function renderHeatmap(entries) {
   const grid = document.getElementById("heatmap-grid");
+  const monthsRow = document.getElementById("heatmap-months");
+  const weekdaysCol = document.getElementById("heatmap-weekdays");
   const byDate = new Map(entries.map((e) => [e.date, e]));
 
   const today = new Date();
@@ -124,26 +130,57 @@ function renderHeatmap(entries) {
   const firstEntryDate = entries.length ? entries[0].dateObj : today;
   const start = startOfWeek(firstEntryDate);
   const end = addDays(startOfWeek(today), 6);
+  const totalWeeks = Math.round((end - start) / (7 * 86400000)) + 1;
 
   const maxDiff = Math.max(0, ...entries.map((e) => diffWords(e)));
 
   const cells = [];
-  for (let d = new Date(start); d <= end; d = addDays(d, 1)) {
-    const key = toKey(d);
-    const entry = byDate.get(key);
-    const diff = entry ? diffWords(entry) : null;
-    const color = entry ? colorForDiff(diff, maxDiff) : "var(--scale-0)";
-    const isFuture = d > today;
-    const title = entry
-      ? `${DATE_FMT.format(d)}: ${diff >= 0 ? "+" : ""}${diff} Wörter, ${entry.minutes} min`
-      : isFuture
-      ? ""
-      : `${DATE_FMT.format(d)}: kein Eintrag`;
-    cells.push(
-      `<div class="heatmap-cell" style="background:${isFuture ? "transparent" : color}" title="${title}"></div>`
-    );
+  const monthLabels = [];
+  let lastMonth = null;
+  let lastLabelWeek = -Infinity;
+
+  for (let w = 0; w < totalWeeks; w++) {
+    const weekStart = addDays(start, w * 7);
+    const month = weekStart.getMonth();
+    if (month !== lastMonth) {
+      lastMonth = month;
+      // Mindestabstand zwischen Labels, damit sie sich bei wenigen Wochen nicht überlappen
+      if (w - lastLabelWeek >= 2) {
+        monthLabels.push(`<span style="grid-column:${w + 1}">${MONTH_SHORT[month]}</span>`);
+        lastLabelWeek = w;
+      }
+    }
+
+    for (let d = 0; d < 7; d++) {
+      const day = addDays(weekStart, d);
+      const key = toKey(day);
+      const entry = byDate.get(key);
+      const diff = entry ? diffWords(entry) : null;
+      const color = entry ? colorForDiff(diff, maxDiff) : "var(--scale-0)";
+      const isFuture = day > today;
+      const weekday = day.toLocaleDateString("de-DE", { weekday: "long" });
+      const title = entry
+        ? `${weekday}, ${DATE_FMT.format(day)}: ${diff >= 0 ? "+" : ""}${diff} Wörter, ${entry.minutes} min`
+        : isFuture
+        ? ""
+        : `${weekday}, ${DATE_FMT.format(day)}: kein Eintrag`;
+      cells.push(
+        `<div class="heatmap-cell" style="grid-column:${w + 1};grid-row:${d + 1};background:${
+          isFuture ? "transparent" : color
+        }" title="${title}"></div>`
+      );
+    }
   }
+
+  grid.style.gridTemplateColumns = `repeat(${totalWeeks}, 12px)`;
   grid.innerHTML = cells.join("");
+
+  monthsRow.style.gridTemplateColumns = `repeat(${totalWeeks}, 12px)`;
+  monthsRow.innerHTML = monthLabels.join("");
+
+  weekdaysCol.innerHTML = WEEKDAY_SHORT.map((label, i) =>
+    WEEKDAY_LABEL_ROWS.has(i) ? `<span>${label}</span>` : `<span></span>`
+  ).join("");
 }
 
 function trendForEntry(entry, index, sortedAsc) {
