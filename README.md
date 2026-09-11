@@ -21,10 +21,14 @@ Daten aus zwei JSON-Dateien liest.
   GitHub-Contribution-Graph) und ein Tagebuch-Feed mit Trend-Indikator
   (▲/▼ im Vergleich zum gleitenden Durchschnitt der letzten Tage).
 - `books.html` — Liste gelesener Bücher mit Kurzreview.
+- `media-fasten.html` — Media-Fasten-Challenge: Live-Streak-Counter,
+  wachsender/verbrennender Garten, Bestwert und Verlauf mit
+  Kategorie-Auswertung.
 - `data/entries.json` — die eigentlichen Schreib-Daten.
 - `data/books.json` — die Bücherliste.
-- `assets/` — Styles (`style.css`) und Logik (`tracker.js`, `books.js`),
-  alles ohne externe Abhängigkeiten.
+- `data/media-fast.json` — Challenge-Zeitraum und Medienkonsum-Einträge.
+- `assets/` — Styles (`style.css`) und Logik (`tracker.js`, `books.js`,
+  `media-fasten.js`), alles ohne externe Abhängigkeiten.
 
 ## Täglich einen Schreib-Eintrag hinzufügen
 
@@ -72,6 +76,37 @@ unterbricht sie.
   "review": "Maximal drei Sätze Review."
 }
 ```
+
+## Media-Fasten-Challenge
+
+Läuft von `challengeStart` bis `challengeEnd` in `data/media-fast.json`
+(Zeitzone Europe/Berlin). Der Live-Counter zeigt die Zeit seit dem letzten
+Eintrag mit Kategorie `sonstiges` (bricht die Streak) — alle anderen
+Kategorien (`musik`, `skill`, `freunde`) werden nur zur Transparenz
+katalogisiert und beeinflussen die Streak nicht. Nach Challenge-Ende bleibt
+die Seite unverändert live und der Counter läuft weiter, nur der Hinweistext
+wechselt auf "beendet".
+
+Neue Einträge werden genauso wie Schreib-Updates per Chat mit Claude
+hinzugefügt (kein Formular, kein Passwort im Code — Schutz kommt allein
+über Git-Schreibrechte am Repo):
+
+```json
+{
+  "start": "2026-09-11T20:00:00+02:00",
+  "end": "2026-09-11T21:00:00+02:00",
+  "category": "sonstiges",
+  "note": "YouTube-Video über Z"
+}
+```
+
+`category` ist eine von `musik`, `skill`, `freunde`, `sonstiges`.
+
+Der Garten hat sechs Stufen (kahler Boden → Sprössling → junge Pflanze →
+kleiner Garten → blühender Garten → voller Blütengarten), abhängig von der
+Dauer der aktuellen Streak. Bricht die Streak, zeigt der Garten für die
+erste Stunde einen verbrannten Zustand, bevor er wieder ganz von vorne
+wächst.
 
 ## Anpassungen
 

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sabbatical-Sachbuch — Media-Fasten</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%96%3C/text%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <header class="site">
+    <div class="site-inner">
+      <a class="brand" href="index.html">Sabbatical-Sachbuch</a>
+      <nav class="site-nav">
+        <a href="index.html">Schreibfortschritt</a>
+        <a href="books.html">Bücher</a>
+        <a href="media-fasten.html" class="active">Media-Fasten</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <h1 class="page-title">Media-Fasten</h1>
+    <p class="page-sub" id="challenge-sub">Challenge läuft …</p>
+
+    <div class="fast-hero">
+      <div class="fast-timer">
+        <div class="fast-timer-value" id="live-counter">–</div>
+        <div class="fast-timer-label">seit letztem Medienkonsum, der die Streak gebrochen hat</div>
+      </div>
+      <div class="fast-best">
+        <div class="stat-value" id="best-streak">–</div>
+        <div class="stat-label">Bestwert</div>
+      </div>
+    </div>
+
+    <div class="garden-card">
+      <div id="garden" class="garden">
+        <svg viewBox="0 0 200 140" role="img" aria-labelledby="garden-caption">
+          <!-- Kahler Boden -->
+          <g class="garden-stage" data-stage="0">
+            <rect x="0" y="110" width="200" height="30" class="g-soil" />
+            <circle cx="40" cy="122" r="3" class="g-pebble" />
+            <circle cx="130" cy="128" r="2.5" class="g-pebble" />
+            <circle cx="90" cy="120" r="2" class="g-pebble" />
+          </g>
+
+          <!-- Sprössling -->
+          <g class="garden-stage" data-stage="1">
+            <rect x="0" y="110" width="200" height="30" class="g-soil" />
+            <path d="M100 112 L100 98" class="g-stem" />
+            <path d="M100 100 C 94 96, 92 100, 96 104" class="g-leaf" />
+            <path d="M100 100 C 106 96, 108 100, 104 104" class="g-leaf" />
+          </g>
+
+          <!-- Junge Pflanze -->
+          <g class="garden-stage" data-stage="2">
+            <rect x="0" y="110" width="200" height="30" class="g-soil-2" />
+            <path d="M100 112 L100 88" class="g-stem" />
+            <path d="M100 94 C 90 88, 88 96, 94 100" class="g-leaf" />
+            <path d="M100 94 C 110 88, 112 96, 106 100" class="g-leaf" />
+            <path d="M100 100 C 92 98, 90 104, 96 106" class="g-leaf" />
+            <path d="M100 100 C 108 98, 110 104, 104 106" class="g-leaf" />
+          </g>
+
+          <!-- Kleiner Garten -->
+          <g class="garden-stage" data-stage="3">
+            <rect x="0" y="110" width="200" height="30" class="g-soil-2" />
+            <path d="M70 112 L70 92" class="g-stem" />
+            <path d="M70 96 C 62 92, 62 100, 68 102" class="g-leaf" />
+            <path d="M70 96 C 78 92, 78 100, 72 102" class="g-leaf" />
+            <path d="M100 112 L100 82" class="g-stem" />
+            <path d="M100 88 C 90 82, 88 90, 94 94" class="g-leaf" />
+            <path d="M100 88 C 110 82, 112 90, 106 94" class="g-leaf" />
+            <path d="M100 96 C 92 94, 90 100, 96 102" class="g-leaf" />
+            <path d="M130 112 L130 94" class="g-stem" />
+            <path d="M130 98 C 122 94, 122 102, 128 104" class="g-leaf" />
+            <path d="M130 98 C 138 94, 138 102, 132 104" class="g-leaf" />
+          </g>
+
+          <!-- Blühender Garten -->
+          <g class="garden-stage" data-stage="4">
+            <circle cx="168" cy="26" r="14" class="g-sun" />
+            <rect x="0" y="110" width="200" height="30" class="g-soil-3" />
+            <path d="M60 112 L60 88" class="g-stem" />
+            <path d="M60 92 C 52 88, 52 96, 58 98" class="g-leaf" />
+            <path d="M60 92 C 68 88, 68 96, 62 98" class="g-leaf" />
+            <circle cx="60" cy="86" r="5" class="g-flower" />
+            <path d="M100 112 L100 78" class="g-stem" />
+            <path d="M100 84 C 90 78, 88 86, 94 90" class="g-leaf" />
+            <path d="M100 84 C 110 78, 112 86, 106 90" class="g-leaf" />
+            <circle cx="100" cy="76" r="6" class="g-flower" />
+            <path d="M140 112 L140 90" class="g-stem" />
+            <path d="M140 94 C 132 90, 132 98, 138 100" class="g-leaf" />
+            <path d="M140 94 C 148 90, 148 98, 142 100" class="g-leaf" />
+            <circle cx="140" cy="88" r="5" class="g-flower" />
+          </g>
+
+          <!-- Voller Blütengarten -->
+          <g class="garden-stage" data-stage="5">
+            <circle cx="168" cy="26" r="15" class="g-sun" />
+            <rect x="0" y="110" width="200" height="30" class="g-soil-3" />
+            <path d="M40 112 L40 92" class="g-stem" />
+            <circle cx="40" cy="90" r="5" class="g-flower g-flower-alt" />
+            <path d="M65 112 L65 82" class="g-stem" />
+            <path d="M65 88 C 56 82, 54 90, 60 94" class="g-leaf" />
+            <circle cx="65" cy="80" r="6" class="g-flower" />
+            <path d="M100 112 L100 74" class="g-stem" />
+            <path d="M100 80 C 90 74, 88 82, 94 86" class="g-leaf" />
+            <path d="M100 80 C 110 74, 112 82, 106 86" class="g-leaf" />
+            <circle cx="100" cy="72" r="7" class="g-flower" />
+            <path d="M135 112 L135 84" class="g-stem" />
+            <path d="M135 90 C 126 84, 124 92, 130 96" class="g-leaf" />
+            <circle cx="135" cy="82" r="6" class="g-flower g-flower-alt" />
+            <path d="M160 112 L160 94" class="g-stem" />
+            <circle cx="160" cy="92" r="5" class="g-flower" />
+            <path d="M118 60 q6 -4 10 2 q-4 4 -10 -2" class="g-butterfly" />
+          </g>
+
+          <!-- Frisch verbrannt -->
+          <g class="garden-stage" data-stage="burnt">
+            <rect x="0" y="110" width="200" height="30" class="g-ash" />
+            <path d="M60 112 L58 100" class="g-char" />
+            <path d="M100 112 L102 96" class="g-char" />
+            <path d="M140 112 L138 102" class="g-char" />
+            <path d="M55 96 q3 -6 -2 -10" class="g-smoke" />
+            <path d="M100 90 q3 -6 -2 -10" class="g-smoke" />
+            <path d="M143 98 q3 -6 -2 -10" class="g-smoke" />
+          </g>
+        </svg>
+      </div>
+      <div class="garden-caption" id="garden-caption">–</div>
+    </div>
+
+    <h2 class="feed-title">Verlauf</h2>
+    <div id="category-summary" class="stats"></div>
+    <div id="fast-history"></div>
+  </main>
+
+  <script src="assets/media-fasten.js"></script>
+</body>
+</html>
