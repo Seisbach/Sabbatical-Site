@@ -82,7 +82,7 @@ unterbricht sie.
 Läuft von `challengeStart` bis `challengeEnd` in `data/media-fast.json`
 (Zeitzone Europe/Berlin). Der Live-Counter zeigt die Zeit seit dem letzten
 Eintrag mit Kategorie `sonstiges` (bricht die Streak) — alle anderen
-Kategorien (`musik`, `skill`, `freunde`) werden nur zur Transparenz
+Kategorien (`skill`, `freunde`) werden nur zur Transparenz
 katalogisiert und beeinflussen die Streak nicht. Nach Challenge-Ende bleibt
 die Seite unverändert live und der Counter läuft weiter, nur der Hinweistext
 wechselt auf "beendet".
@@ -100,7 +100,8 @@ hinzugefügt (kein Formular, kein Passwort im Code — Schutz kommt allein
 }
 ```
 
-`category` ist eine von `musik`, `skill`, `freunde`, `sonstiges`.
+`category` ist eine von `skill`, `freunde`, `sonstiges`. Musik wird
+grundsätzlich nicht getrackt.
 
 Der Garten hat sechs Stufen (kahler Boden → Sprössling → junge Pflanze →
 kleiner Garten → blühender Garten → voller Blütengarten), abhängig von der

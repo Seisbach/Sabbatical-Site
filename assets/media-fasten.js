@@ -1,7 +1,6 @@
 /* Media-Fasten: Live-Streak, Garten-Visualisierung und Verlauf aus data/media-fast.json */
 
 const CATEGORY_LABELS = {
-  musik: "Musik",
   skill: "Skill-Lernen",
   freunde: "Mit Freunden",
   sonstiges: "Sonstiges",
@@ -97,7 +96,7 @@ function renderChallengeInfo(challengeEnd, now) {
 }
 
 function renderCategorySummary(entries) {
-  const totals = { musik: 0, skill: 0, freunde: 0, sonstiges: 0 };
+  const totals = { skill: 0, freunde: 0, sonstiges: 0 };
   entries.forEach((e) => {
     totals[e.category] += new Date(e.end) - new Date(e.start);
   });
